@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   def create
-    @order = Order.new(order_params)
+    @product = Product.find(params[:product_id])
+    @order = @product.orders.build(order_params)
 
     if @order.save
       redirect_to page_confirmed_path, notice: "Order was successfully created."
