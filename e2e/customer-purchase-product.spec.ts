@@ -34,7 +34,7 @@ test.describe("Customer Purchase Product", () => {
       }) => {
         const productsDetailPage = new ProductDetailPage(page);
         await productsDetailPage.goToProductDetailPage();
-        await productsDetailPage.fillValidCustomerInformation();
+        await productsDetailPage.fillValidCustomerInformation("First", "0875551234");
         await productsDetailPage.clickConfirmOrderButton();
         await productsDetailPage.displayThankYouMessage();
       });
@@ -46,9 +46,7 @@ test.describe("Customer Purchase Product", () => {
         await productsDetailPage.goToProductDetailPage();
         await productsDetailPage.fillInvalidCustomerInformation();
         await productsDetailPage.clickConfirmOrderButton();
-      
-        const currentUrl = page.url();
-        await expect(page).toHaveURL(currentUrl);
+        await productsDetailPage.notDisplayThankYouMessage();
       });
       
 })
