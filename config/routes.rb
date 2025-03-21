@@ -14,6 +14,4 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :products
   resources :orders
-
-
 end
