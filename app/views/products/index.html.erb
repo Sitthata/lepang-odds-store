@@ -3,7 +3,7 @@
   <% @products.each_with_index do |product, i| %>
     <%= link_to product_path(product), class: "block" do %>
       <div class="bg-white shadow-md rounded p-4 hover:bg-gray-100 transition duration-200 flex">
-        <p class="text-xl font-medium text-blue-500 hover:underline"><%= "#{i + 1}. #{product.name}" %></p>
+        <p class="text-xl font-medium text-blue-500 hover:underline" data-testid="product-name"><%= "#{i + 1}. #{product.name}" %></p>
         <p class="text-lg text-gray-600 ml-auto"><%= number_to_currency(product.price, :unit => "฿", format: "%n %u") %></p>
       </div>
     <% end %>
