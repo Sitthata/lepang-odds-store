@@ -1,7 +1,4 @@
-import { test, expect } from "@playwright/test";
-
-// Product listing data
-const products = [
+export default [
   {
     name: "กระป๋องเก็บความเย็น",
     description: "This is description for product 1",
@@ -83,32 +80,3 @@ const products = [
     price: 300.0,
   },
 ];
-
-// Product Listing Page Test Suite
-test("Navigates to the products page and displays the correct title", async ({
-  page,
-}) => {
-  // Arrange & Act: Navigate to the products page
-  await page.goto("http://localhost:3000/products");
-
-  // Assert: Verify the page title is visible
-  await expect(page.getByText("All Products 1")).toBeVisible();
-});
-
-test("Displays the correct number of products in the product list", async ({
-  page,
-}) => {
-  // Arrange: Navigate to the products page
-  await page.goto("http://localhost:3000/products");
-
-  // Arrange: Calculate expected product count (Thai language sorting)
-  const expectedProducts = [...products].sort((a, b) =>
-    a.name.localeCompare(b.name)
-  ).map(product => product.name)
-
-  // Act: Get all product links on the page
-  const productLinks = (await page.getByTestId("product-name").allTextContents());
-
-  // Assert: Verify the correct number of products is displayed
-  await expect(productLinks).toHaveLength(expectedProducts.length);
-});
